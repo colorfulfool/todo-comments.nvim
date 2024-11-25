@@ -13,7 +13,7 @@ M.ns = vim.api.nvim_create_namespace("todo-comments")
 --- @class TodoOptions
 -- TODO: add support for markdown todos
 local defaults = {
-  signs = true, -- show icons in the signs column
+  signs = true,      -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
   keywords = {
@@ -31,8 +31,8 @@ local defaults = {
     TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
   },
   gui_style = {
-    fg = "NONE", -- The gui style to use for the fg highlight group.
-    bg = "BOLD", -- The gui style to use for the bg highlight group.
+    fg = "NONE",         -- The gui style to use for the fg highlight group.
+    bg = "BOLD",         -- The gui style to use for the bg highlight group.
   },
   merge_keywords = true, -- when true, custom keywords will be merged with the defaults
   -- highlighting of the line containing the todo comment
@@ -40,18 +40,18 @@ local defaults = {
   -- * keyword: highlights of the keyword
   -- * after: highlights after the keyword (todo text)
   highlight = {
-    multiline = true, -- enable multine todo comments
-    multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
-    multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
-    before = "", -- "fg" or "bg" or empty
-    keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
-    after = "fg", -- "fg" or "bg" or empty
+    multiline = true,                -- enable multine todo comments
+    multiline_pattern = "^.",        -- lua pattern to match the next multiline from the start of the matched keyword
+    multiline_context = 10,          -- extra lines that will be re-evaluated when changing a line
+    before = "",                     -- "fg" or "bg" or empty
+    keyword = "wide",                -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+    after = "fg",                    -- "fg" or "bg" or empty
     -- pattern can be a string, or a table of regexes that will be checked
     pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
     -- pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] }, -- pattern used for highlightng (vim regex)
-    comments_only = true, -- uses treesitter to match keywords in comments only
-    max_line_len = 400, -- ignore lines longer than this
-    exclude = {}, -- list of file types to exclude highlighting
+    comments_only = true,            -- uses treesitter to match keywords in comments only
+    max_line_len = 400,              -- ignore lines longer than this
+    exclude = {},                    -- list of file types to exclude highlighting
     throttle = 200,
   },
   -- list of named colors where we try to extract the guifg from the
@@ -132,7 +132,7 @@ function M._setup()
   end
   M.colors()
   M.signs()
-  require("todo-comments.highlight").start()
+  -- require("todo-comments.highlight").start()
   if Snacks and pcall(require, "snacks.picker") then
     Snacks.picker.sources.todo_comments = require("todo-comments.snacks").source
   end

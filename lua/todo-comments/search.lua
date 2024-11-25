@@ -19,12 +19,11 @@ end
 function M.process(lines)
   local results = {}
   for _, line in pairs(lines) do
-    local file, row, col, text = line:match("^(.+):(%d+):(%d+):(.*)$")
+    local file, row, _, text = line:match("^(.+):(%d+):(%d+):(.*)$")
     if file then
       local item = {
         filename = file,
         lnum = tonumber(row),
-        col = tonumber(col),
         line = text,
       }
 
